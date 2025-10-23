@@ -1,0 +1,40 @@
+{
+  "name": "wiassur-admin-v3",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "./dev.sh",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@tanstack/vue-table": "^8.21.3",
+    "apexcharts": "^5.3.5",
+    "axios": "^1.12.2",
+    "bootstrap": "^5.3.8",
+    "bootstrap-vue-next": "^0.40.6",
+    "crypto-js": "^4.2.0",
+    "dayjs": "^1.11.18",
+    "pinia": "^3.0.3",
+    "sweetalert2": "^11.25.0",
+    "uuid": "^13.0.0",
+    "vue": "^3.5.22",
+    "vue-facing-decorator": "^4.0.1",
+    "vue-router": "^4.5.1",
+    "vue3-apexcharts": "^1.8.0"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
+    "@types/node": "^24.7.0",
+    "@types/uuid": "^10.0.0",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vue/tsconfig": "^0.8.1",
+    "jsdom": "^26.1.0",
+    "typescript": "~5.9.3",
+    "vite": "^7.1.7",
+    "vitest": "^3.2.4",
+    "vue-tsc": "^3.1.0"
+  }
+}
