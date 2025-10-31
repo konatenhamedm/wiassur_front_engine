@@ -180,10 +180,10 @@ export default class EngineConfiguration extends Vue {
   }
 
   get versionOptions() {
-    return this.versions.map(v => ({
+    return this.versions.map((v) => ({
       value: v.id,
-      label: `${v.name} - v.${v.version}${v.active ? ' ★' : ''}`
-    }))
+      label: `${v.name} - v.${v.version}${v.active ? " ★" : ""}`,
+    }));
   }
 
   // Table columns definition for GLOBAL methods

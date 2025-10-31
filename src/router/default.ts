@@ -1,42 +1,42 @@
-import type { RouteRecordRaw } from 'vue-router'
-import DefaultLayout from '@/layouts/DefaultLayout.vue'
-import AuthLayout from '@/layouts/AuthLayout.vue'
+import type { RouteRecordRaw } from "vue-router";
+import DefaultLayout from "@/layouts/DefaultLayout.vue";
+import AuthLayout from "@/layouts/AuthLayout.vue";
 
 const defaultRoutes: RouteRecordRaw[] = [
   {
-    path: '/',
-    name: 'home',
-    redirect: '/dashboard'
+    path: "/",
+    name: "home",
+    redirect: "/dashboard",
   },
   {
-    path: '/login',
-    name: 'login',
+    path: "/login",
+    name: "login",
     component: AuthLayout,
     meta: {
       requiresAuth: false,
-      title: 'Connexion'
+      title: "Connexion",
     },
     children: [
       {
-        path: '',
-        component: () => import('@/views/Auth/Login.vue')
-      }
-    ]
+        path: "",
+        component: () => import("@/views/Auth/Login.vue"),
+      },
+    ],
   },
   {
-    path: '/dashboard',
-    name: 'dashboard',
+    path: "/dashboard",
+    name: "dashboard",
     component: DefaultLayout,
     meta: {
-      title: 'Tableau de bord'
+      title: "Tableau de bord",
     },
     children: [
       {
-        path: '',
-        component: () => import('@/views/Dashboard/Index.vue')
-      }
-    ]
-  }
-]
+        path: "",
+        component: () => import("@/views/Dashboard/Index.vue"),
+      },
+    ],
+  },
+];
 
-export default defaultRoutes
+export default defaultRoutes;

@@ -3,10 +3,14 @@ import { Component, Prop } from "vue-facing-decorator";
 import { Vue } from "vue-facing-decorator";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
+import ThemeSwitcher from "@/components/mydesire/ThemeSwitcher.vue";
 
 @Component({
   name: "AppHeader",
   emits: ["toggle-sidebar"],
+  components: {
+    ThemeSwitcher,
+  }
 })
 export default class AppHeader extends Vue {
   @Prop({ type: Boolean, default: false })
@@ -41,11 +45,14 @@ export default class AppHeader extends Vue {
     </button>
 
     <div class="header-right">
+
       <div v-if="tenant" class="tenant-badge">
         <i class="fas fa-building me-1"></i>
         {{ tenant.name }}
       </div>
-
+      
+      <ThemeSwitcher />
+      
       <div class="user-menu dropdown">
         <button
           class="btn btn-link dropdown-toggle user-btn"
