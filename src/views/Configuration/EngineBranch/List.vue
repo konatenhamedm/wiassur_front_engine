@@ -116,10 +116,9 @@ export default class BranchCategoryList extends Vue {
               </optgroup>
             </select>
 
-            <Button variant="primary" size="sm">
-              <!-- @click="$router.push('/configuration/branch/create')" -->
+            <!-- <Button variant="primary" size="sm" @click="$router.push('/configuration/branch/create')">
               Nouvelle engine
-            </Button>
+            </Button> -->
           </div>
         </div>
       </CardHeader>
@@ -137,7 +136,9 @@ export default class BranchCategoryList extends Vue {
       <div class="col-md-2" v-for="branch in branches" :key="branch.uuid">
         <div
           class="card border-0 shadow-sm cursor-pointer"
-          @click="$router.push(`/configuration/engine/${branch.uuid}`)"
+          @click="
+            $router.push(`/configuration/engine-branches/${branch.id}/methods`)
+          "
         >
           <div class="card-body text-center">
             <div>

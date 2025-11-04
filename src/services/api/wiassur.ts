@@ -1,7 +1,8 @@
 // API Wiassur
 import type { ApiResponse, PaginationParams } from "@/types/common";
 import { Insurer } from "@/types/engine";
-import { wiassurClient } from "./client";
+import { mosaicClient, wiassurClient } from "./client";
+import EngineMethod from "@/entity/EngineMethod";
 
 export const wiassurApi = {
   // ===== INSURERS =====

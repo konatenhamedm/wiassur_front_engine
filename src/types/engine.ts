@@ -1,5 +1,7 @@
 // Types pour le moteur de calcul d'assurance
 
+import Engine from "@/entity/Engine";
+
 export interface EngineMethod {
   id: string;
   uuid: string;
@@ -11,6 +13,7 @@ export interface EngineMethod {
   parameters?: MethodParameter[];
   createdAt?: string;
   updatedAt?: string;
+  engine?: Engine;
 }
 
 export interface MethodParameter {
