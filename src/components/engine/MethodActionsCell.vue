@@ -1,8 +1,7 @@
-// @ts-ignore
+<!-- src/components/engine/MethodActionsCell.vue -->
 <script lang="ts">
-import { Component, Prop } from 'vue-facing-decorator'
-import { Vue } from 'vue-facing-decorator'
-import Button from '@/components/ui/Button.vue'
+import { Component, Prop, Vue } from 'vue-facing-decorator';
+import Button from '@/components/ui/Button.vue';
 
 @Component({
   name: 'MethodActionsCell',
@@ -12,32 +11,43 @@ import Button from '@/components/ui/Button.vue'
 })
 export default class MethodActionsCell extends Vue {
   @Prop({ required: true })
-  method!: any
+  method!: any;
 
   @Prop({ default: () => [] })
-  insurers!: any[]
+  insurers!: any[];
 
   @Prop({ default: false })
-  showDuplicate!: boolean
+  showDuplicate!: boolean;
+
+  // Événements pour le parent
+  declare $emit: (event: 'editMethod' | 'updateMethod' | 'deleteMethod' | 'toggleDetails' | 'duplicateToInsurer' | 'manageLines' | 'detailsMethod', ...args: any[]) => void;
 
   goToEditor() {
-    this.$emit('edit-method', this.method.id)
+    this.$emit('editMethod', this.method.id);
   }
 
   update() {
-    this.$emit('update-method', this.method)
+    this.$emit('updateMethod', this.method);
   }
 
   remove() {
-    this.$emit('delete-method', this.method.id)
+    this.$emit('deleteMethod', this.method.id);
   }
 
   toggleDetails() {
-    this.$emit('toggle-details', this.method)
+    this.$emit('toggleDetails', this.method);
   }
 
   duplicateTo(insurerId: number) {
-    this.$emit('duplicate-to-insurer', this.method.id, insurerId)
+    this.$emit('duplicateToInsurer', this.method.id, insurerId);
+  }
+
+  showMethodDetails() {
+    this.$emit('detailsMethod', this.method);
+  }
+
+  manageLines() {
+    this.$emit('manageLines', this.method);
   }
 }
 </script>
@@ -55,55 +65,82 @@ export default class MethodActionsCell extends Vue {
       />
     </div>
 
-    <!-- Editor button -->
+    <!-- Bouton Détails -->
     <Button
-      variant="success"
+      variant="outline-info"
       size="sm"
-      icon="fas fa-code"
-      @click="goToEditor"
-      title="Éditeur"
+      icon="fas fa-eye"
+      @click="showMethodDetails"
+      title="Voir les détails"
     />
 
-    <!-- Edit button -->
+    <!-- Bouton Édition -->
     <Button
-      variant="primary"
+      variant="outline-primary"
       size="sm"
       icon="fas fa-edit"
       @click="update"
-      title="Modifier"
+      title="Modifier la méthode"
     />
 
-    <!-- Delete button -->
+    <!-- Bouton Gestion des lignes (uniquement pour méthodes d'assureur) -->
     <Button
-      variant="danger"
+      v-if="!method.isGlobal"
+      variant="outline-warning"
       size="sm"
-      icon="fas fa-trash"
-      @click="remove"
-      title="Supprimer"
+      icon="fas fa-list-check"
+      @click="manageLines"
+      title="Gérer les lignes de calcul"
     />
 
-    <!-- Duplicate dropdown (for risk methods) -->
+    <!-- Bouton Dupliquer (dropdown) -->
     <div v-if="showDuplicate && insurers.length > 0" class="dropdown">
       <button
-        class="btn btn-sm btn-warning dropdown-toggle"
+        class="btn btn-sm btn-outline-secondary dropdown-toggle"
         data-bs-toggle="dropdown"
+        title="Dupliquer vers un assureur"
       >
-        <i class="fas fa-crosshairs"></i>
+        <i class="fas fa-copy"></i>
       </button>
-      <ul class="dropdown-menu">
+      <ul class="dropdown-menu dropdown-menu-end">
         <li v-for="insurer in insurers" :key="insurer.id">
           <a
             class="dropdown-item"
             href="#"
             @click.prevent="duplicateTo(insurer.id)"
           >
+            <i class="fas fa-building me-2"></i>
             {{ insurer.name }}
           </a>
         </li>
       </ul>
     </div>
 
-    <!-- Extra actions slot for dropdown, etc. -->
+    <!-- Bouton Supprimer -->
+    <Button
+      variant="outline-danger"
+      size="sm"
+      icon="fas fa-trash"
+      @click="remove"
+      title="Supprimer la méthode"
+    />
+
+    <!-- Slot pour actions supplémentaires -->
     <slot name="extra-actions"></slot>
   </div>
 </template>
+
+<style scoped>
+.form-check-input {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  min-width: 200px;
+}
+
+.btn-group-sm > .btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+</style>

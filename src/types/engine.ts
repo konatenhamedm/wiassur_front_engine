@@ -16,6 +16,53 @@ export interface EngineMethod {
   engine?: Engine;
 }
 
+export interface MethodLine {
+  id: number;
+  orderIndex: number;
+  expression?: string;
+  resultVariable?: string;
+  lineType: 'calculation' | 'condition';
+  metadata?: any;
+  createdAt: string;
+  method: number;
+}
+
+export interface Place {
+  id: number;
+  line: MethodLine;
+  argument?: Argument;
+  operator?: string;
+  literalValue?: string;
+  orderIndex: number;
+}
+
+export interface ConditionGroup {
+  id: number;
+  line: MethodLine;
+  logicOperator: 'AND' | 'OR';
+  orderIndex: number;
+}
+
+export interface Condition {
+  id: number;
+  group: ConditionGroup;
+  leftArgument?: Argument;
+  operator: string;
+  rightValue?: string;
+  orderIndex: number;
+}
+
+export interface Argument {
+  id: number;
+  name: string;
+  label?: string;
+  dataType?: DataType;
+  itemType?: ItemType;
+  isRequired: boolean;
+  defaultValue: any;
+  constraints?: any[];
+}
+
 export interface MethodParameter {
   name: string;
   type: string;

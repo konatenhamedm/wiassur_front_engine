@@ -116,6 +116,13 @@ const configurationRoutes: RouteRecordRaw[] = [
         component: () => import("@/views/Configuration/EngineMethod/List.vue"),
         meta: { title: "Engine Branches d'assurance" },
       },
+      // NOUVELLE ROUTE POUR LES LIGNES DE MÉTHODE
+      {
+        path: "engine-branches/:branchSlug/methods/:methodId/lines",
+        name: "MethodLinesList",
+        component: () => import("@/views/Configuration/EngineMethod/MethodLinesList.vue"),
+        meta: { title: "Lignes de méthode" },
+      },
 
       // ============================================
       // ASSUREURS

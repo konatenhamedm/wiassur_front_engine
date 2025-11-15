@@ -17,7 +17,7 @@ export default class AuthLayout extends Vue {
   <div class="auth-layout">
     <div class="auth-container">
       <div class="auth-header">
-        <h1 class="auth-logo">WiAssur</h1>
+        <h1 class="auth-logo">WiASSUR</h1>
         <p class="auth-tagline">Administration</p>
       </div>
 
